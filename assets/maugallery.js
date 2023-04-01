@@ -40,6 +40,9 @@
       $(this).fadeIn(500);
     });
   };
+
+  console.log("étape 1"); // console log d'étape
+
   $.fn.mauGallery.defaults = {
     columns: 3,
     lightBox: true,
@@ -48,6 +51,7 @@
     tagsPosition: "bottom",
     navigation: true
   };
+
   $.fn.mauGallery.listeners = function(options) {
     $(".gallery-item").on("click", function() {
       if (options.lightBox && $(this).prop("tagName") === "IMG") {
@@ -58,14 +62,20 @@
     });
 
     $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
+
     $(".gallery").on("click", ".mg-prev", () =>
       $.fn.mauGallery.methods.prevImage(options.lightboxId)
     );
+
     $(".gallery").on("click", ".mg-next", () =>
       $.fn.mauGallery.methods.nextImage(options.lightboxId)
     );
   };
+
+  console.log("étapes 2"); // console log d'étape
+
   $.fn.mauGallery.methods = {
+
     createRowWrapper(element) {
       if (
         !element
@@ -119,6 +129,8 @@
         .attr("src", element.attr("src"));
       $(`#${lightboxId}`).modal("toggle");
     },
+
+    // Image précédante bug probablement ici
     prevImage() {
       let activeImage = null;
       $("img.gallery-item").each(function() {
@@ -145,12 +157,15 @@
           }
         });
       }
-      let index = 0,
+
+      // let index = 0,
+      let index = -1, // Changement ici pour le bug
         next = null;
 
       $(imagesCollection).each(function(i) {
         if ($(activeImage).attr("src") === $(this).attr("src")) {
-          index = i ;
+          // index = i ;
+          index = (i === 0) ? imagesCollection.length - 1 : i - 1; // Changemnt ici pour le bug
         }
       });
       next =
@@ -158,6 +173,8 @@
         imagesCollection[imagesCollection.length - 1];
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
+
+    // Image suivante bug probablement ici 
     nextImage() {
       let activeImage = null;
       $("img.gallery-item").each(function() {
@@ -184,17 +201,21 @@
           }
         });
       }
-      let index = 0,
+
+      // let index = 0,
+      let index = -1, // Changement ici pour le bug 
         next = null;
 
       $(imagesCollection).each(function(i) {
         if ($(activeImage).attr("src") === $(this).attr("src")) {
-          index = i;
+          // index = i;
+          index = (i === imagesCollection.length - 1) ? 0 : i + 1; // Changement ici pour e bug
         }
       });
       next = imagesCollection[index] || imagesCollection[0];
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
+
     createLightBox(gallery, lightboxId, navigation) {
       gallery.append(`<div class="modal fade" id="${
         lightboxId ? lightboxId : "galleryLightbox"
@@ -218,6 +239,8 @@
                 </div>
             </div>`);
     },
+
+    // Voir les tags 
     showItemTags(gallery, position, tags) {
       var tagItems =
         '<li class="nav-item"><span class="nav-link active active-tag"  data-images-toggle="all">Tous</span></li>';
@@ -235,12 +258,14 @@
         console.error(`Unknown tags position: ${position}`);
       }
     },
+
+    // Filtre par tags
     filterByTag() {
       if ($(this).hasClass("active-tag")) {
         return;
       }
       $(".active-tag").removeClass("active active-tag");
-      $(this).addClass("active-tag");
+      $(this).addClass("active active-tag"); // Changement ici pour la correction du bug 
 
       var tag = $(this).data("images-toggle");
 
@@ -260,4 +285,6 @@
       });
     }
   };
+
+  console.log("dernière étape");
 })(jQuery);
