@@ -60,7 +60,6 @@ body {
 }
 .picture img {
 	width: 100%;
-
 }
 #about-me {
 	flex: 2
@@ -72,7 +71,7 @@ body {
 }
 .about-me__introduction {
 	font-family: 'Spectral';
-	font-size: 16px; /*Besoin de changer la taille de la typo pour correspondre au visuel original*/
+	font-size: 16px;
 	font-weight: 800;
 	font-style: italic;
 	width: 60%;
@@ -89,24 +88,23 @@ body {
 	justify-content: center;
 }
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-	color: black;                      /*Changement de la couleur de typo pour corriger le contraste*/
+	color: black;
 	background-color: #BEB45A;
 	border-radius:0 ;
 }
 .nav-pills .nav-link {
 	color: #000;
-	cursor: pointer; /*Changement ici*/
+	cursor: pointer;
 }
 .item-column {
 	position: relative;
-	margin-bottom: 0 !important;
+	margin-bottom: 0;
 	padding: 0;
 }
 .item-column::after{
 	content: "";
 	display: block;
 	padding-bottom: 100%;
-
 }
 .gallery-item {
 	position: absolute;
@@ -135,7 +133,7 @@ body {
 	font-family: Spectral;
 	font-style: italic;
 	font-weight: 300;
-	font-size: 36px;   /*Changement de la taille de la typo pour coller au viusel original*/
+	font-size: 36px;
 }
 .quote__author {
 	font-family: Spectral;
@@ -161,7 +159,6 @@ body {
 	justify-content: space-between;
 	display: flex;
 	padding : 2em 0;
-
 }
 .service {
 	background-color: white;
@@ -196,7 +193,6 @@ body {
 }
 .form-container {
 	flex : 2;
-
 }
 form {
 	display: flex;
@@ -224,7 +220,6 @@ input[type="submit"] {
 	background-color: #BEB45A;
 	padding: .5em 1em
 }
-
 @media all and (max-width: 1180px) {
 	.picture {
 		flex : 2;
@@ -240,11 +235,9 @@ input[type="submit"] {
 		width: 100%;
 	}
 }
-
 @media all and (max-width: 1000px) {
 	#about{
 		flex-direction: column;
-
 	}
 	.picture {
 		width: 50%;
@@ -297,7 +290,6 @@ input[type="submit"] {
 		z-index: -1;
 	}
 }
-
 @media all and (max-width: 650px) {
 	.top-header {
 		flex-direction: column;
@@ -332,4 +324,3 @@ input[type="submit"] {
 		width: 80%;
 	}
 }
-
